@@ -1,1 +1,354 @@
 
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maths en français</title>
+
+<style>
+:root {
+  --primary: #DCEDE5;
+  --dark: #315D4B;
+  --background: #F7FAF8;
+  --accent: #E9B99B;
+  --white: #FFFFFF;
+  --text: #263B32;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: var(--background);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+header {
+  background: white;
+  padding: 18px 7%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.logo {
+  color: var(--dark);
+  font-size: 23px;
+  font-weight: bold;
+}
+
+nav {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+nav a {
+  text-decoration: none;
+  color: var(--dark);
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.hero {
+  background: var(--primary);
+  padding: 75px 7%;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: clamp(30px, 5vw, 46px);
+  color: var(--dark);
+  margin-bottom: 15px;
+}
+
+.hero p {
+  max-width: 650px;
+  margin: auto;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  border-radius: 9px;
+  padding: 12px 22px;
+  font-size: 15px;
+}
+
+.main-button {
+  margin-top: 20px;
+  background: var(--dark);
+  color: white;
+}
+
+.container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 55px 20px;
+}
+
+.section-title {
+  text-align: center;
+  color: var(--dark);
+  margin-bottom: 30px;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background: white;
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px #00000009;
+}
+
+.card .emoji {
+  font-size: 36px;
+}
+
+.card h3 {
+  color: var(--dark);
+  margin: 12px 0;
+}
+
+.card button {
+  margin-top: 15px;
+  background: var(--primary);
+  color: var(--dark);
+  font-weight: bold;
+}
+
+.panel {
+  display: none;
+  background: white;
+  padding: 30px;
+  margin-top: 30px;
+  border-radius: 15px;
+}
+
+.panel.active {
+  display: block;
+}
+
+.panel h2 {
+  color: var(--dark);
+  margin-bottom: 15px;
+}
+
+.question {
+  margin: 20px 0;
+  padding: 15px;
+  background: var(--background);
+  border-radius: 10px;
+}
+
+input {
+  padding: 12px;
+  width: 100%;
+  max-width: 350px;
+  border: 1px solid #B8CFC2;
+  border-radius: 7px;
+  margin: 10px 0;
+  font-size: 16px;
+}
+
+.result {
+  margin-top: 12px;
+  font-weight: bold;
+  color: var(--dark);
+}
+
+footer {
+  background: var(--dark);
+  color: white;
+  text-align: center;
+  padding: 25px;
+}
+
+@media(max-width: 600px) {
+  header {
+    justify-content: center;
+  }
+  nav {
+    justify-content: center;
+  }
+  .hero {
+    padding: 50px 20px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">🌿 Maths en français</div>
+  <nav>
+    <a href="#accueil">Accueil</a>
+    <a href="#rubriques">Apprendre</a>
+    <a href="#assistant">MathBot</a>
+  </nav>
+</header>
+
+<section class="hero" id="accueil">
+  <h1>Bienvenue dans ton espace mathématique !</h1>
+  <p>
+    Apprends les mathématiques en français,
+    découvre de nouvelles notions et entraîne-toi
+    à ton rythme.
+  </p>
+  <button class="main-button"
+    onclick="document.getElementById('rubriques').scrollIntoView({behavior:'smooth'})">
+    Commencer à apprendre →
+  </button>
+</section>
+
+<main class="container" id="rubriques">
+
+<h2 class="section-title">Découvre nos quatre rubriques</h2>
+
+<div class="cards">
+
+<div class="card">
+  <div class="emoji">📚</div>
+  <h3>Mes leçons</h3>
+  <p>Découvre les notions mathématiques avec des explications simples.</p>
+  <button onclick="showPanel('lessons')">Découvrir</button>
+</div>
+
+<div class="card">
+  <div class="emoji">✏️</div>
+  <h3>Mes exercices</h3>
+  <p>Entraîne-toi avec des exercices et des indices.</p>
+  <button onclick="showPanel('exercises')">S'entraîner</button>
+</div>
+
+<div class="card">
+  <div class="emoji">🎯</div>
+  <h3>Mes quiz</h3>
+  <p>Teste tes connaissances et découvre ton résultat.</p>
+  <button onclick="showPanel('quiz')">Jouer au quiz</button>
+</div>
+
+<div class="card">
+  <div class="emoji">🤖</div>
+  <h3>Mon assistant IA</h3>
+  <p>Pose tes questions et apprends avec ton assistant virtuel.</p>
+  <button onclick="showPanel('assistant')">Parler à MathBot</button>
+</div>
+
+</div>
+
+<section class="panel" id="lessons">
+<h2>📚 Mes leçons</h2>
+<h3>Les équations</h3>
+<p>Une équation est une égalité qui contient une inconnue.</p>
+<p>Exemple : x + 3 = 7</p>
+<p>On soustrait 3 des deux côtés.</p>
+<p><strong>x = 7 - 3 = 4</strong></p>
+<p>La solution est x = 4.</p>
+</section>
+
+<section class="panel" id="exercises">
+<h2>✏️ Mes exercices</h2>
+<p>Résous cette équation :</p>
+<div class="question">
+<h3>x + 5 = 12</h3>
+<input id="exerciseAnswer" type="number" placeholder="Entre ta réponse">
+<br>
+<button class="main-button" onclick="checkExercise()">Vérifier</button>
+<button class="main-button" onclick="showHint()">Voir un indice</button>
+<p class="result" id="exerciseResult"></p>
+</div>
+</section>
+
+<section class="panel" id="quiz">
+<h2>🎯 Petit quiz de mathématiques</h2>
+<p>Quelle est la solution de cette équation ?</p>
+<h3>2x = 10</h3>
+<div class="question">
+<label><input type="radio" name="quizAnswer" value="3"> x = 3</label><br>
+<label><input type="radio" name="quizAnswer" value="5"> x = 5</label><br>
+<label><input type="radio" name="quizAnswer" value="10"> x = 10</label>
+</div>
+<button class="main-button" onclick="checkQuiz()">Valider ma réponse</button>
+<p class="result" id="quizResult"></p>
+</section>
+
+<section class="panel" id="assistant">
+<h2>🤖 Bonjour, je suis MathBot !</h2>
+<p>Je suis ton futur assistant pédagogique.</p>
+<p>Je pourrai t'aider à comprendre les mathématiques,
+à résoudre des exercices et à progresser.</p>
+<p><strong>La connexion à l'intelligence artificielle sera ajoutée dans une prochaine étape.</strong></p>
+</section>
+
+</main>
+
+<footer>
+<p>🌿 Maths en français</p>
+<p>Apprendre, comprendre et progresser ensemble.</p>
+<p>© 2026 - Site pédagogique</p>
+</footer>
+
+<script>
+function showPanel(id) {
+  document.querySelectorAll('.panel').forEach(panel => {
+    panel.classList.remove('active');
+  });
+
+  const selected = document.getElementById(id);
+  selected.classList.add('active');
+  selected.scrollIntoView({behavior:'smooth', block:'center'});
+}
+
+function checkExercise() {
+  const answer = document.getElementById('exerciseAnswer').value;
+  const result = document.getElementById('exerciseResult');
+
+  if (answer === '') {
+    result.textContent = 'Entre une réponse avant de vérifier.';
+  } else if (Number(answer) === 7) {
+    result.textContent = 'Bravo ! 🎉 Ta réponse est correcte.';
+  } else {
+    result.textContent = 'Pas encore ! Essaie encore.';
+  }
+}
+
+function showHint() {
+  document.getElementById('exerciseResult').textContent =
+    'Indice : soustrais 5 des deux côtés.';
+}
+
+function checkQuiz() {
+  const answer = document.querySelector(
+    'input[name="quizAnswer"]:checked'
+  );
+
+  const result = document.getElementById('quizResult');
+
+  if (!answer) {
+    result.textContent = 'Choisis une réponse !';
+  } else if (answer.value === '5') {
+    result.textContent = 'Excellent ! 🎉 2 × 5 = 10.';
+  } else {
+    result.textContent = 'Essaie encore ! Divise 10 par 2.';
+  }
+}
+</script>
+
+</body>
+</html>
+
